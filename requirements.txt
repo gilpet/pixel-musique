@@ -3,4 +3,5 @@ Django==2.1.7
 image==1.5.27
 MIDIUtil==1.2.1
 Pillow==5.4.1
+pygame==1.9.4
 pytz==2018.9
