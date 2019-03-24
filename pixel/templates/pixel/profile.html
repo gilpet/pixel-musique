@@ -12,25 +12,44 @@
          <div style="max-width:470px;">
             <center>
                <button style = "border:0px;background-color:#4285F4; margin-top:8%;
-                  height:35px; width:80%; margin-left:19%;" type="submit" value="Upload">
+                  height:35px; width:10%; margin-left:19%;" type="submit" value="Upload">
                   <strong>Upload</strong>
                </button>
             </center>
          </div>
       </form>
+      <div>
         {% if form.errors %}
-        {% for field in form %}
-        {% for error in field.errors %}
-        <div class="alert alert-danger">
-           <strong>{{ error|escape }}</strong>
-        </div>
-        {% endfor %}
-        {% endfor %}
-        {% for error in form.non_field_errors %}
-        <div class="alert alert-danger">
-            <strong>{{ error|escape }}</strong>
-        </div>
-        {% endfor %}
+          {% for field in form %}
+            {% for error in field.errors %}
+              <div class="alert alert-danger">
+                 <strong>{{ error|escape }}</strong>
+              </div>
+            {% endfor %}
+            {% endfor %}
+          {% for error in form.non_field_errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+          {% endfor %}
         {% endif %}
+      </div>
+      {% if song.ok %}
+        {% load static %} <img src="{% static "images/me.jpg" %}" alt="Hi!" />
+      {% endif %}
+      <form name = "form" enctype = "multipart/form-data"
+         action = "{% url "pixel:play" %}" method ="POST">{% csrf_token %}
+        <button style = "border:0px;background-color:#4285F4; margin-top:8%;
+           height:35px; width:10%; margin-left:19%;" type="submit" value="Play">
+           <strong>Play</strong>
+        </button>
+      </form>
+      <form name = "form" enctype = "multipart/form-data"
+         action = "{% url "pixel:stop" %}" method ="POST">{% csrf_token %}
+        <button style = "border:0px;background-color:#4285F4; margin-top:8%;
+           height:35px; width:10%; margin-left:19%;" type="submit" value="Stop">
+           <strong>Stop</strong>
+        </button>
+      </form>
    </body>
 </html>
