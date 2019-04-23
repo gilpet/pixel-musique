@@ -1,22 +1,18 @@
 <html>
+   <head>
+     {% load staticfiles %}
+     <link rel='stylesheet' href="{% static 'styles.css' %}">
+   </head>
    <body>
+     <p class="orange-text">Upload a picture up to 50KB and I will play it like it's sheet music</p>
       <form name = "form" enctype = "multipart/form-data"
          action = "{% url "pixel:saved" %}" method ="POST">{% csrf_token %}
-         <div style = "max-width:470px;">
-            <center>
-               <input type="file" style = "margin-left:20%;"
-                  placeholder="Picture" name ="picture"/>
-            </center>
-         </div>
+         <input type="file" placeholder="Picture" name ="picture"/>
          <br>
-         <div style="max-width:470px;">
-            <center>
-               <button style = "border:0px;background-color:#4285F4; margin-top:8%;
-                  height:35px; width:10%; margin-left:19%;" type="submit" value="Upload">
-                  <strong>Upload</strong>
-               </button>
-            </center>
-         </div>
+         <br>
+         <button class="button-style" type="submit" value="Upload">
+            <strong>Upload</strong>
+         </button>
       </form>
       <div>
         {% if form.errors %}
@@ -34,22 +30,19 @@
           {% endfor %}
         {% endif %}
       </div>
-      {% if song.ok %}
-        {% load static %} <img src="{% static "images/me.jpg" %}" alt="Hi!" />
-      {% endif %}
-      <form name = "form" enctype = "multipart/form-data"
-         action = "{% url "pixel:play" %}" method ="POST">{% csrf_token %}
-        <button style = "border:0px;background-color:#4285F4; margin-top:8%;
-           height:35px; width:10%; margin-left:19%;" type="submit" value="Play">
-           <strong>Play</strong>
-        </button>
-      </form>
-      <form name = "form" enctype = "multipart/form-data"
-         action = "{% url "pixel:stop" %}" method ="POST">{% csrf_token %}
-        <button style = "border:0px;background-color:#4285F4; margin-top:8%;
-           height:35px; width:10%; margin-left:19%;" type="submit" value="Stop">
-           <strong>Stop</strong>
-        </button>
-      </form>
+      <div>
+        <form name = "form" enctype = "multipart/form-data" style="display:inline-block;"
+           action = "{% url "pixel:play" %}" method ="POST">{% csrf_token %}
+          <button class="button-style" type="submit" value="Play">
+             <strong>Play</strong>
+          </button>
+        </form>
+        <form name = "form" enctype = "multipart/form-data" style="display:inline-block;"
+           action = "{% url "pixel:stop" %}" method ="POST">{% csrf_token %}
+          <button class="button-style" type="submit" value="Stop">
+             <strong>Stop</strong>
+          </button>
+        </form>
+      </div>
    </body>
 </html>

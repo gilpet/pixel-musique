@@ -1,5 +1,11 @@
 from PIL import Image
 from midiutil.MidiFile import MIDIFile
+from django.core.exceptions import ValidationError
+
+def file_size(value):
+    limit = 50 * 1024
+    if value.size > limit:
+        raise ValidationError('File too large. Size should not exceed 50 KB.')
 
 def get_image_data(img):
     return list(Image.open(img).getdata())
