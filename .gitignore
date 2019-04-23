@@ -9,7 +9,8 @@ db.sqlite3
 *.so
 
 #test images
-.png
+*.png
+*.jpg
 
 # Distribution / packaging
 .Python
