@@ -7,14 +7,19 @@ from django.views import generic
 from django.views.decorators.csrf import csrf_exempt
 from .models import Image
 from .forms import ImageForm
+
+
 @csrf_exempt
 def play_song(request):
     play()
     return render_to_response('pixel/profile.html', {'saved':True,'song':{'ok':2}})
+
+
 @csrf_exempt
 def stop_song(request):
     stop()
     return render_to_response('pixel/profile.html', {'saved':True,'song':{'ok':2}})
+
 
 @csrf_exempt
 def save_image(request):

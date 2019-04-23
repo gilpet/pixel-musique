@@ -8,6 +8,9 @@ db.sqlite3
 # C extensions
 *.so
 
+#test images
+.png
+
 # Distribution / packaging
 .Python
 build/
