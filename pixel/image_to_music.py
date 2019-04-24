@@ -34,5 +34,6 @@ def pixels_to_midi(pix, image_name):
             time += 1
         with open(image_name, 'wb') as outf:
             mf.writeFile(outf)
+        return len(pix)
     except Exception as e:
         print(e)

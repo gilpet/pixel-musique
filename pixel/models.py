@@ -7,3 +7,7 @@ class Image(models.Model):
 
    class Meta:
       db_table = "image"
+
+class Metrics(models.Model):
+   pixels = models.IntegerField()
+   processing_time = models.FloatField()

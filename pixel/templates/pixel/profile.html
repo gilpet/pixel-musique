@@ -4,7 +4,9 @@
      <link rel='stylesheet' href="{% static 'styles.css' %}">
    </head>
    <body>
-     <p class="orange-text">Upload a picture up to 100KB and I will play it like it's sheet music</p>
+      <h1 class="tangerine">pixel_music</h1>
+      <p class="tangerine">Upload a picture up to 100KB and see what it would
+        sound like if you played the pixels like sheet music</p>
       <form name = "form" enctype = "multipart/form-data"
          action = "{% url "pixel:saved" %}" method ="POST">{% csrf_token %}
          <input type="file" placeholder="Picture" name ="picture"/>
@@ -30,8 +32,8 @@
         {% endif %}
       </div>
       <div>
-        {% if song.ok %}
-          <p class="orange-text">Ready!</p>
+        {% if song %}
+          <p class="tangerine">Ready!</p>
         {% endif %}
         <form name = "form" enctype = "multipart/form-data" style="display:inline-block;"
            action = "{% url "pixel:play" %}" method ="POST">{% csrf_token %}
@@ -45,6 +47,18 @@
              <strong>Stop</strong>
           </button>
         </form>
+        <form name = "form" enctype = "multipart/form-data"
+           action = "{% url "pixel:stats" %}" method ="POST">{% csrf_token %}
+          <button class="button-style" style="width:160px;" type="submit" value="Stats">
+             <strong>Click here if you like stats?</strong>
+          </button>
+        </form>
+        {% if average_pixels and average_time %}
+          <p class="tangerine">Average number of pixels in images uploaded here:
+            <span class="powder">{{average_pixels}}</span></p>
+          <p class="tangerine">Average image processing time in seconds:
+            <span class="powder">{{average_time}}</span></p>
+        {% endif %}
       </div>
    </body>
 </html>
