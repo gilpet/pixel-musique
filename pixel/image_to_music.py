@@ -3,25 +3,25 @@ from midiutil.MidiFile import MIDIFile
 from django.core.exceptions import ValidationError
 
 def file_size(value):
-    limit = 50 * 1024
+    limit = 100 * 1024
     if value.size > limit:
-        raise ValidationError('File too large. Size should not exceed 50 KB.')
+        raise ValidationError('File too large. Size should not exceed 100 KB.')
 
 def get_image_data(img):
     return list(Image.open(img).getdata())
 
 def rgb_to_midi(rgb):
-    return 21 + (rgb%87)
+    return 21 + (rgb % 87)
 
-def pixels_to_midi(pix,image_name):
+def pixels_to_midi(pix, image_name):
     try:
         mf = MIDIFile(1)
         track = 0
         time = 0
         channel = 0
         volume = 100
-        mf.addTrackName(track,time,image_name)
-        mf.addTempo(track,time,1000)
+        mf.addTrackName(track, time, image_name)
+        mf.addTempo(track, time, 1000)
         for i in pix:
             p2 = rgb_to_midi(i[1])
             p3 = rgb_to_midi(i[2])

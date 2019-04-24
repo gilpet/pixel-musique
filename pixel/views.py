@@ -12,13 +12,13 @@ from .forms import ImageForm
 @csrf_exempt
 def play_song(request):
     play()
-    return render_to_response('pixel/profile.html', {'saved':True,'song':{'ok':2}})
+    return render_to_response('pixel/profile.html', {'saved':True})
 
 
 @csrf_exempt
 def stop_song(request):
     stop()
-    return render_to_response('pixel/profile.html', {'saved':True,'song':{'ok':2}})
+    return render_to_response('pixel/profile.html', {'saved':True})
 
 
 @csrf_exempt

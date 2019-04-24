@@ -4,12 +4,11 @@
      <link rel='stylesheet' href="{% static 'styles.css' %}">
    </head>
    <body>
-     <p class="orange-text">Upload a picture up to 50KB and I will play it like it's sheet music</p>
+     <p class="orange-text">Upload a picture up to 100KB and I will play it like it's sheet music</p>
       <form name = "form" enctype = "multipart/form-data"
          action = "{% url "pixel:saved" %}" method ="POST">{% csrf_token %}
          <input type="file" placeholder="Picture" name ="picture"/>
-         <br>
-         <br>
+         <br><br>
          <button class="button-style" type="submit" value="Upload">
             <strong>Upload</strong>
          </button>
@@ -22,7 +21,7 @@
                  <strong>{{ error|escape }}</strong>
               </div>
             {% endfor %}
-            {% endfor %}
+          {% endfor %}
           {% for error in form.non_field_errors %}
             <div class="alert alert-danger">
                 <strong>{{ error|escape }}</strong>
@@ -31,6 +30,9 @@
         {% endif %}
       </div>
       <div>
+        {% if song.ok %}
+          <p class="orange-text">Ready!</p>
+        {% endif %}
         <form name = "form" enctype = "multipart/form-data" style="display:inline-block;"
            action = "{% url "pixel:play" %}" method ="POST">{% csrf_token %}
           <button class="button-style" type="submit" value="Play">
