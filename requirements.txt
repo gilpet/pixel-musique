@@ -1,4 +1,4 @@
-certifi==2019.3.9
+certifi==2022.12.7
 Django==2.2.27
 image==1.5.27
 MIDIUtil==1.2.1
